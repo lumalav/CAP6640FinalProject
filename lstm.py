@@ -3,7 +3,7 @@ import pandas as pd
 training_df = pd.read_csv('training_data_clean.csv')
 
 # Training set is so big, has over 1 billion tweets. I sample it down to just 100,000
-training_df = training_df.sample(100000)
+training_df = training_df.sample(n=100000, random_state=100)
 
 # positive reviews are labeled as 4, change that to 1
 
