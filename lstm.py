@@ -149,7 +149,7 @@ class SentimentLSTM(nn.Module):
         # initialized to zero, for hidden state and cell state of LSTM
         weight = next(self.parameters()).data
         
-        if (train_on_gpu):
+        if (False):
             hidden = (weight.new(self.n_layers, batch_size, self.hidden_dim).zero_().cuda(),
                   weight.new(self.n_layers, batch_size, self.hidden_dim).zero_().cuda())
         else:
@@ -187,7 +187,7 @@ print_every = 100
 clip=5 # gradient clipping
 
 # move model to GPU, if available
-if(train_on_gpu):
+if(False):
     net.cuda()
 
 net.train()
@@ -200,7 +200,7 @@ for e in range(epochs):
     for inputs, labels in train_loader:
         counter += 1
         
-        if(train_on_gpu):
+        if(False):
             inputs, labels = inputs.cuda(), labels.cuda()
 
         # Creating new variables for the hidden state, otherwise
@@ -233,7 +233,7 @@ for e in range(epochs):
                 # we'd backprop through the entire training history
                 val_h = tuple([each.data for each in val_h])
 
-                if(train_on_gpu):
+                if(False):
                     inputs, labels = inputs.cuda(), labels.cuda()
 
                 inputs = inputs.type(torch.LongTensor)
@@ -264,7 +264,7 @@ for inputs, labels in test_loader:
     # we'd backprop through the entire training history
     h = tuple([each.data for each in h])
 
-    if(train_on_gpu):
+    if(False):
         inputs, labels = inputs.cuda(), labels.cuda()
     
     # get predicted outputs
@@ -280,7 +280,7 @@ for inputs, labels in test_loader:
     
     # compare predictions to true label
     correct_tensor = pred.eq(labels.float().view_as(pred))
-    correct = np.squeeze(correct_tensor.numpy()) if not train_on_gpu else np.squeeze(correct_tensor.cpu().numpy())
+    correct = np.squeeze(correct_tensor.numpy()) if not False else np.squeeze(correct_tensor.cpu().numpy())
     num_correct += np.sum(correct)
 
 # avg test loss
