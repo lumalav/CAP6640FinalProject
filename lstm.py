@@ -1,6 +1,6 @@
 import pandas as pd
 
-training_df = pd.read_csv('training_data_clean.csv')
+training_df = pd.read_csv('Data/training_data_clean.csv')
 
 # Training set is so big, has over 1 billion tweets. I sample it down to just 100,000
 training_df = training_df.sample(n=100000, random_state=100)
@@ -291,5 +291,4 @@ test_acc = num_correct/len(test_loader.dataset)
 print("Test accuracy: {:.3f}".format(test_acc))
 
 # Save trained model
-
-torch.save(net, 'sentiment_analysis.pt')
+torch.save(net.state_dict(), 'sentiment_analysis.pt')

@@ -11,7 +11,7 @@ gen = api.search_comments(
     after=start_epoch,
     before=end_epoch,
     subreddit='stellar',
-    filter=['author', 'body', 'created_utc']
+    filter=['author', 'body', 'created_utc', 'score']
 )
 
 df = pd.DataFrame([thing.d_ for thing in gen])
